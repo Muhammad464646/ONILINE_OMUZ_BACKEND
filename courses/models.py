@@ -5,10 +5,11 @@ from users.models import User
 class Course(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='courses')
     title = models.CharField(max_length=255)
+    short_description=models.TextField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='courses/', blank=True, null=True)
-
+    price=models.IntegerField()
     def __str__(self):
         return self.title
 

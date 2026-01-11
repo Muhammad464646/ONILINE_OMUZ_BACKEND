@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from courses.views import CourseViewSet, LessonViewSet, EnrollmentViewSet, ProgressViewSet
-
+from users.views import UserViewSet
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 router = DefaultRouter()
+router.register('users',UserViewSet)
 router.register('courses', CourseViewSet)
 router.register('lessons', LessonViewSet)
 router.register('enrollments', EnrollmentViewSet)
