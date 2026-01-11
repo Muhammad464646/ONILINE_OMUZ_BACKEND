@@ -10,17 +10,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import api_view
+from .serializers import RegisterSerializer
+class RegisterAPIView(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
 
-@api_view(['POST'])
-def register(request):
-    username = request.data.get('username')
-    password = request.data.get('password')
-    email = request.data.get('email')
-    role = request.data.get('role', 'student')
-    
-    if User.objects.filter(username=username).exists():
-        return Response({'error': 'Username уже существует'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    user = User.objects.create_user(username=username, password=password, email=email, role=role)
-    serializer = TeacherSerializer(user)
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()  # здесь сохраняется пользователь
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
