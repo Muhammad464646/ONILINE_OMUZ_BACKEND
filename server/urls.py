@@ -28,7 +28,7 @@ urlpatterns = [
 ]
 router = DefaultRouter()
 router.register('users',UserViewSet)
-router.register('skill',SkillViewSet)
+router.register('skill',SkillViewSet,basename='skill')
 router.register('courses', CourseViewSet)
 router.register('lessons', LessonViewSet)
 router.register('enrollments', EnrollmentViewSet)

@@ -13,7 +13,7 @@ class RegisterAPIView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()  # здесь сохраняется пользователь
+        serializer.save() 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class UserViewSet(viewsets.ModelViewSet):
