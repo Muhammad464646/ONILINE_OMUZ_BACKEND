@@ -2,9 +2,11 @@ from rest_framework import serializers
 from .models import User,Skill
 
 class SkillSerializer(serializers.ModelSerializer):
+    teacher_username = serializers.CharField(source='teacher.username', read_only=True)
+
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'icon')
+        fields = ('id', 'teacher', 'teacher_username', 'name', 'icon')
 
 
 class TeacherSerializer(serializers.ModelSerializer):

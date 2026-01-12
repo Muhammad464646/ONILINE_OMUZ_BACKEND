@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework import generics
-from .models import User
+from .models import User,Skill
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegisterSerializer,TeacherSerializer,SkillSerializer
@@ -22,6 +22,6 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser]
 
 class SkillViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     permission_classes = [IsAdminUser]
