@@ -9,7 +9,6 @@ class SkillSerializer(serializers.ModelSerializer):
 
 class TeacherSerializer(serializers.ModelSerializer):
     skills = SkillSerializer(many=True, read_only=True)
-
     class Meta:
         model = User
         fields = ('id', 'username', 'bio', 'profile_picture', 'skills')
